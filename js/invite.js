@@ -21,6 +21,7 @@ var getNames = new Promise(function (resolve, reject) {
 		return item[0].toLowerCase().match(urlVars.guest.toLowerCase())
 	  })
 	  
+	  console.log('thisLine',thisLine)
 	  var nameString = thisLine[1]
 	  
 	  var guestNames = {
@@ -237,7 +238,6 @@ loader.load(function (loader, resources) {
 	
 	// display the envelope
 	Promise.all([getNames, delay(2000)]).then(function () {
-		console.log('envContainer',envContainer)
 		envContainer.interactive = true
 		envContainer.on('pointertap',flipEnvelope)
 		app.ticker.add(function (delta) {
