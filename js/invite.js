@@ -20,7 +20,7 @@ guestReq.onloadend = function () {
   })
   
   var guestNames = {
-    primary: thisLine.slice(4, 6).join(' '),
+    primary: thisLine.slice(3, 6).join(' '),
     secondary: thisLine.slice(6, 9).join(' '),
     plusOne: thisLine[9]
   }
