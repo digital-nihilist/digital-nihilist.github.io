@@ -86,7 +86,7 @@ function getViewport() {
 var viewport = getViewport()
 console.log('viewport',viewport)
 //alert(JSON.stringify(viewport))
-document.getElementById('thisMess').innerHTML = JSON.stringify(viewport)
+document.getElementById('thisMess').innerHTML = 'viewport: ' + JSON.stringify(viewport)
 
 
 var stageHeight = viewport.height * 0.95

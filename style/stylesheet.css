@@ -11,9 +11,6 @@
 
 }
 
-
-
-
 @font-face {
     font-family: 'morris_romanbold';
     src: url('morrisroman-black-webfont.woff2') format('woff2'),
@@ -21,4 +18,12 @@
     font-weight: normal;
     font-style: normal;
 
+}
+
+
+body{
+	font-family: 'morris_romanbold';
+	background-color: #191919;
+	text-align: center;
+	color: white;
 }
