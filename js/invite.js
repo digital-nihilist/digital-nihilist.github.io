@@ -95,7 +95,7 @@ const cBotCont = new PIXI.Container();
 
 
 
-if (stageWidth / 2 * 384/500 > stageHeight * 0.85) {
+if (stageWidth * 0.85 * 384/500 > stageHeight * 0.85) {
 	var envelopeSize = {
 		height: stageHeight  * 0.75,
 		width: stageHeight * 0.75 * 500/384
@@ -259,7 +259,7 @@ loader.load(function (loader, resources) {
 		//envContainer.interactive = false;
 		delTicker(function () {
 			if (envContainer.width >= 5 && !flipped) {
-				envContainer.width = envContainer.width / 2
+				envContainer.width = envContainer.width * 2/3
 			} else if (envContainer.width < 5 && !flipped) {
 				envContainer.removeChild(envelopeSides.back)
 				envContainer.removeChild(nameText)
@@ -270,7 +270,7 @@ loader.load(function (loader, resources) {
 				envContainer.width += envelopeSize.width / 10
 			}
 		})
-		//delay(1000).then(dropEnvelope)
+		delay(1000).then(dropEnvelope)
 	}
 	
 	function openEnvelope() {
@@ -299,20 +299,26 @@ loader.load(function (loader, resources) {
 		delay(1000).then(scaleCard)
 	}
 
+	var scaled = false
 	function scaleCard() {
 		console.log('scaleCard')
-		delTicker(function() {
-			if (cardBackContainer.width > paperSize.width) {
-				cardBackContainer.width -= 3
+		delTicker(function flerg () {
+			if (cardBackContainer.width > paperSize.width && !scaled) {
+				cardBackContainer.width -= paperSize.width / 50
 				cardBackContainer.height = cardBackContainer.width * 384/500
 			}
+			if (!scaled && (cardBackContainer.width < paperSize.width || cardBackContainer.height < paperSize.height)) {
+				cardBackContainer.width = paperSize.width
+				cardBackContainer.height = cardBackContainer.width * 384/500
+				scaled = true
+			}
 			if (cardBackContainer.pivot.y > 0) {
-				cardBackContainer.pivot.y -= 3
+				cardBackContainer.pivot.y -= paperSize.height / 45
 			} else if (cardBackContainer.pivot.y  < 0) {
 				cardBackContainer.pivot.y = 0
 			}
 		})
-		delay(2000).then(openCard)
+		delay(1500).then(openCard)
 	}
 	
 	var opened = false
@@ -320,23 +326,30 @@ loader.load(function (loader, resources) {
 		console.log('openCard')
 		addCard(loader, resources)
 		
-		cardBackContainer.y -= 2
-		cardBackContainer.width = paperSize.width
-		cardBackContainer.height = paperSize.height
+		//cardBackContainer.y -= 2
+		cTopCont.height -= 5
+		//cardBackContainer.width = paperSize.width
+		//cardBackContainer.height = paperSize.height
 		
 		delTicker(function() {
 			if (!opened && cardBackContainer.height > 0) {
-				cardBackContainer.height -= 2
+				cardBackContainer.height -= paperSize.height/30
 			} else if (cardBackContainer.height <= 0) {
 				opened = true
 				cardBackContainer.alpha = 0
 			}
 			if (opened && cTopCont.height < paperSize.height) {
-			  cTopCont.height += 2
+			  cTopCont.height += paperSize.height/30
 			}
 		})
+		
+		cBotCont.interactive = true;
+		cBotCont.on('pointertap',zolaLink)
 	}
 	
+	function zolaLink() {
+		window.open('http://zola.com/wedding/juanandjosh', '_blank')
+	}
 	
 })
 
