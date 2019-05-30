@@ -254,7 +254,7 @@ loader.load(function (loader, resources) {
 				envContainer.width += envelopeSize.width / 10
 			}
 		})
-		delay(1000).then(dropEnvelope)
+		//delay(1000).then(dropEnvelope)
 	}
 	
 
@@ -300,7 +300,7 @@ loader.load(function (loader, resources) {
 		addCard(loader, resources)
 		
 		//cardBackContainer.y -= 2
-		cTopCont.height -= 5
+		//cTopCont.height -= 5
 		//cardBackContainer.width = paperSize.width
 		//cardBackContainer.height = paperSize.height
 		
@@ -313,6 +313,9 @@ loader.load(function (loader, resources) {
 			}
 			if (opened && cTopCont.height < paperSize.height) {
 			  cTopCont.height += paperSize.height/30
+			}
+			if (opened && cTopCont.height > paperSize.height) {
+				cTopCont.height = paperSize.height
 			}
 		})
 		
