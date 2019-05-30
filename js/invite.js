@@ -84,9 +84,7 @@ loader.add('insideURL','./img/Inside.jpg')
 loader.add('envBack','./img/envBack.jpg')
 loader.add('envFront','./img/envFront.jpg');
 loader.add('cardBack','./img/cardBack.jpg');
-loader.add('sword','./img/noun_Sword_1949847.png');
 
-const openerContainer = new PIXI.Container();
 const envContainer = new PIXI.Container();
 envContainer.alpha = 0.025;
 const cardBackContainer = new PIXI.Container();
@@ -188,21 +186,6 @@ loader.load(function (loader, resources) {
 	
 	app.stage.addChild(cardBackContainer);
 	makeEnvelope(loader, resources)
-		//function makeSword(loader, resources) {
-		app.stage.addChild(openerContainer);
-		var swordTex = resources.sword.texture
-		
-		const swordSprite = new PIXI.Sprite(swordTex)
-		swordSprite.height = paperSize.height * 9/10
-		swordSprite.width = swordSprite.height * 485/727
-		openerContainer.addChild(swordSprite)
-		
-		openerContainer.pivot.x = openerContainer.width / 2
-		openerContainer.pivot.y = openerContainer.height / 2;
-		openerContainer.x = app.screen.width * 1.5// / 2;
-		openerContainer.y = app.screen.height*0.25// / 2;
-		
-	//}
 	
 	
 		var cBackTex = resources.cardBack.texture
@@ -274,18 +257,7 @@ loader.load(function (loader, resources) {
 		delay(1000).then(dropEnvelope)
 	}
 	
-	function openEnvelope() {
-		console.log('open sesame')
-		envContainer.interactive = false
-		delTicker(function () {
-			if (openerContainer.x > (-1.5 * envelopeSize.width)) {
-				openerContainer.x -= envelopeSize.width / 1
-			}
-		})
-		
-		delay(1000).then(dropEnvelope)
-	}
-	
+
 	function dropEnvelope() {
 		console.log('dropEnvelope')
 		cardBackContainer.alpha = 1
