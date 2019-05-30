@@ -12,7 +12,7 @@ var getNames = new Promise(function (resolve, reject) {
 
 	var guestReq = new XMLHttpRequest()
 	//guestReq.open('GET','https://content.dropboxapi.com/s/01ql8geudqbe847/guest_list.csv')
-	guestReq.open('POST','https://content.dropboxapi.com/s/x06kfyrs7r32fzo/zola_guest_list_template.csv')
+	guestReq.open('GET','https://content.dropboxapi.com/s/x06kfyrs7r32fzo/zola_guest_list_template.csv')
 
 	guestReq.onloadend = function () {
 	  var resArr = CSVToArray(guestReq.response,',')
@@ -25,7 +25,6 @@ var getNames = new Promise(function (resolve, reject) {
 		  reject('womp')
 	  }
 	  
-	  console.log('thisLine',thisLine)
 	  var nameString = thisLine[1]
 	  
 	  var guestNames = {
@@ -82,7 +81,6 @@ document.body.appendChild(app.view);
 
 const loader = PIXI.Loader.shared;
 loader.add('insideURL','./img/Inside.jpg')
-//loader.add('insideURL','https://i.imgur.com/lKZIHQY.jpg')
 loader.add('envBack','./img/envBack.jpg')
 loader.add('envFront','./img/envFront.jpg');
 loader.add('cardBack','./img/cardBack.jpg');
@@ -90,7 +88,7 @@ loader.add('sword','./img/noun_Sword_1949847.png');
 
 const openerContainer = new PIXI.Container();
 const envContainer = new PIXI.Container();
-envContainer.alpha = 0.05;
+envContainer.alpha = 0.025;
 const cardBackContainer = new PIXI.Container();
 cardBackContainer.alpha = 0
 
