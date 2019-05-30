@@ -16,7 +16,7 @@ var getNames = new Promise(function (resolve, reject) {
 
 	guestReq.onloadend = function () {
 	  var resArr = CSVToArray(guestReq.response,',')
-	  //console.log('resArr',resArr)
+	  console.log('resArr',resArr)
 	  var thisLine = resArr.find(function (item) {
 		return item[0].toLowerCase().match(urlVars.guest.toLowerCase())
 	  })
