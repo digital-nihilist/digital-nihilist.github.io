@@ -10,7 +10,7 @@ console.log(urlVars)
 
 var guestReq = new XMLHttpRequest()
 //guestReq.open('GET','https://content.dropboxapi.com/s/01ql8geudqbe847/guest_list.csv')
-guestReq.open('GET','https://content.dropboxapi.com/s/x06kfyrs7r32fzo/zola_guest_list_template.csv')
+guestReq.open('POST','https://content.dropboxapi.com/s/x06kfyrs7r32fzo/zola_guest_list_template.csv')
 
 guestReq.onloadend = function () {
   var resArr = CSVToArray(guestReq.response,',')
@@ -20,9 +20,9 @@ guestReq.onloadend = function () {
   })
   
   var guestNames = {
-    primary: thisLine.slice(1, 4).join(' '),
-    secondary: thisLine.slice(4, 7).join(' '),
-    plusOne: thisLine[7]
+    primary: thisLine.slice(3, 6).join(' '),
+    secondary: thisLine.slice(6, 9).join(' '),
+    plusOne: thisLine[9]
   }
   
   console.log('guestNames',guestNames)
