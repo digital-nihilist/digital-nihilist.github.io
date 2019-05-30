@@ -85,6 +85,7 @@ function getViewport() {
 
 var viewport = getViewport()
 console.log('viewport',viewport)
+alert(JSON.stringify(viewport))
 
 
 
