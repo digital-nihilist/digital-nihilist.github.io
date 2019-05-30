@@ -21,7 +21,6 @@ var getNames = new Promise(function (resolve, reject) {
 		return item[0].toLowerCase().match(urlVars.guest.toLowerCase())
 	  })
 	  
-	  
 	  var nameString = thisLine[1]
 	  
 	  var guestNames = {
