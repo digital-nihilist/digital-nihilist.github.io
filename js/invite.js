@@ -9,10 +9,12 @@ var urlVars = getUrlVars()
 console.log(urlVars)
 
 var guestReq = new XMLHttpRequest()
-guestReq.open('GET','https://content.dropboxapi.com/s/01ql8geudqbe847/guest_list.csv')
+//guestReq.open('GET','https://content.dropboxapi.com/s/01ql8geudqbe847/guest_list.csv')
+guestReq.open('GET','https://content.dropboxapi.com/s/x06kfyrs7r32fzo/zola_guest_list_template.csv')
 
 guestReq.onloadend = function () {
   var resArr = CSVToArray(guestReq.response,',')
+  console.log('resArr',resArr)
   var thisLine = resArr.find(function (item) {
     return item[0].match(urlVars.guest)
   })
