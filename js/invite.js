@@ -60,9 +60,36 @@ var getNames = new Promise(function (resolve, reject) {
 	guestReq.send()
 })
 
+var offsetHeight = document.getElementById('thisDiv').offsetHeight
+console.log('offsetHeight',document.getElementById('thisDiv').offsetHeight)
+console.log('screen.height',screen.height)
 
-var stageHeight = window.innerHeight * 0.95
-var stageWidth = window.innerWidth * 0.95
+
+
+function getViewport() {
+	var w = window,
+		d = document,
+		e = d.documentElement,
+		g = d.getElementsByTagName('body')[0],
+		x = window.innerWidth || e.clientWidth || g.clientWidth,
+		y = window.innerHeight|| e.clientHeight|| g.clientHeight;
+		
+	var viewport = {
+		height:  w.innerHeight|| e.clientHeight|| g.clientHeight,
+		width: w.innerWidth || e.clientWidth || g.clientWidth
+	}
+	
+	//console.log('viewport',viewport)
+	return viewport
+}
+
+var viewport = getViewport()
+console.log('viewport',viewport)
+
+
+
+var stageHeight = viewport.height * 0.95
+var stageWidth = viewport.width * 0.95
 
 const app = new PIXI.Application({
 	height: stageHeight,
