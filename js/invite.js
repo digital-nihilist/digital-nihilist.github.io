@@ -100,8 +100,8 @@ const app = new PIXI.Application({
 	//width: window.innerWidth * 0.9,
 	//height: window.innerHeight * 0.9,
 	//backgroundColor: 0xa55e06, //orange
-	backgroundColor: 0x000000, //black
-	transparent: true,
+	backgroundColor: 0xFFFFFF, //black
+	transparent: false,
 	resolution: window.devicePixelRatio|| 1,
 });
 
