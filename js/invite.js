@@ -90,7 +90,9 @@ document.getElementById('thisMess').innerHTML = 'viewport: ' + JSON.stringify(vi
 
 
 if (viewport.height > viewport.width) {
-	var flarg
+	var aspect = 't'
+} else {
+	var aspect = 'w'
 }
 
 var stageHeight = viewport.height * 0.95
@@ -140,7 +142,7 @@ if (stageWidth * 0.85 * 384/500 > stageHeight * 0.85) {
 	}
 }
 
-if (stageWidth / 2 * 384/500 > stageHeight / 2 * 0.85) {
+if (envelopeSize.height * 2 >= stageHeight * 0.85) {
 	var paperSize = {
 		height: stageHeight / 2  * 0.85,
 		width: stageHeight / 2  * 0.85 * 500/384
