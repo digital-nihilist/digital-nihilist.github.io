@@ -142,10 +142,10 @@ if (stageWidth * 0.85 * 384/500 > stageHeight * 0.85) {
 	}
 }
 
-if (envelopeSize.height * 2 >= stageHeight * 0.85) {
+if (envelopeSize.height * 2 >= stageHeight ) {
 	var paperSize = {
-		height: stageHeight / 2  * 0.85,
-		width: stageHeight / 2  * 0.85 * 500/384
+		height: stageHeight / 2 ,
+		width: stageHeight / 2  * 500/384
 	}
 } else {
 	var paperSize = {
