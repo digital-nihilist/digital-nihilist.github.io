@@ -114,7 +114,8 @@ const app = new PIXI.Application({
 document.body.appendChild(app.view);
 
 const loader = PIXI.Loader.shared;
-loader.add('insideURL','./img/Inside.jpg')
+//loader.add('insideURL','./img/Inside.jpg')
+loader.add('insideURL','./img/InsideBlank.jpg')
 loader.add('envBack','./img/envBack.jpg')
 loader.add('envFront','./img/envFront.jpg');
 loader.add('cardBack','./img/cardBack.jpg');
@@ -206,7 +207,19 @@ function addCard(loader, resources) {
 	botSprite.height = paperSize.height
 	botSprite.width = paperSize.width
 
+
+	const url = new PIXI.Text('www.zola.com/wedding/juanandjosh',{fontFamily : 'morris_romanbold', fontSize: envelopeSize.width/30, fill : 0x005df4, align : 'center'});
+	
+	url.interactive = true
+	url.on('pointertap',zolaLink)
+
 	cBotCont.addChild(botSprite)
+	cBotCont.addChild(url)
+	
+	url.anchor.set(0.5)
+	url.y = botSprite.y + paperSize.height * 3/7
+	url.x = paperSize.width / 2
+	
 	cTopCont.addChild(topSprite)
 	
 	cBotCont.x = app.screen.width / 2;
@@ -372,15 +385,16 @@ loader.load(function (loader, resources) {
 			}
 		})
 		
-		cBotCont.interactive = true;
-		cBotCont.on('pointertap',zolaLink)
+		//cBotCont.interactive = true;
 	}
 	
-	function zolaLink() {
-		window.open('http://zola.com/wedding/juanandjosh', '_blank')
-	}
+	
 	
 })
+
+function zolaLink() {
+	window.open('http://zola.com/wedding/juanandjosh', '_blank')
+}
 
 function delTicker(func, t) {
 	delay(t).then(function() {
