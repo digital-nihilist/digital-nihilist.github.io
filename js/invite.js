@@ -349,8 +349,8 @@ loader.load(function (loader, resources) {
 			}
 			if (cardBackContainer.pivot.y > 0) {
 				cardBackContainer.pivot.y -= paperSize.height / 45
-			} else if (cardBackContainer.pivot.y  < paperSize.height / -15) {
-				cardBackContainer.pivot.y = paperSize.height / -15
+			} else if (cardBackContainer.pivot.y  < 0) {
+				cardBackContainer.pivot.y = 0
 			}
 		})
 		delay(1500).then(openCard)
@@ -378,7 +378,7 @@ loader.load(function (loader, resources) {
 			}
 			if (opened && cTopCont.height < paperSize.height) {
 				cTopCont.alpha = 1
-			  cTopCont.height += paperSize.height/30
+				cTopCont.height += paperSize.height/30
 			}
 			if (opened && cTopCont.height > paperSize.height) {
 				cTopCont.height = paperSize.height
