@@ -160,8 +160,8 @@ if (envelopeSize.height * 2 >= stageHeight ) {
 	}
 } else {
 	var paperSize = {
-		height: stageWidth / 2 * 384/500,
-		width: stageWidth / 2
+		height: stageWidth * 0.85 * 384/500,
+		width: stageWidth * 0.85
 	}
 }
 
