@@ -89,6 +89,10 @@ console.log('viewport',viewport)
 document.getElementById('thisMess').innerHTML = 'viewport: ' + JSON.stringify(viewport)
 
 
+if (viewport.height > viewport.width) {
+	var flarg
+}
+
 var stageHeight = viewport.height * 0.95
 var stageWidth = viewport.width * 0.95
 
@@ -100,9 +104,10 @@ const app = new PIXI.Application({
 	//width: window.innerWidth * 0.9,
 	//height: window.innerHeight * 0.9,
 	//backgroundColor: 0xa55e06, //orange
-	backgroundColor: 0xFFFFFF, //black
-	transparent: false,
-	resolution: window.devicePixelRatio|| 1,
+	backgroundColor: 0x000000, //black
+	//backgroundColor: 0xFFFFFF, //black
+	transparent: true,
+	resolution: 1//window.devicePixelRatio|| 1,
 });
 
 document.body.appendChild(app.view);
