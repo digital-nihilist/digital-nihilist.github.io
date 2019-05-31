@@ -208,7 +208,7 @@ function addCard(loader, resources) {
 	botSprite.width = paperSize.width
 
 
-	const url = new PIXI.Text('www.zola.com/wedding/juanandjosh',{fontFamily : 'morris_romanbold', fontSize: envelopeSize.width/30, fill : 0x005df4, align : 'center'});
+	const url = new PIXI.Text('www.zola.com/wedding/juanandjosh',{fontFamily : 'morris_romanbold', fontSize: paperSize.width/20, fill : 0x005df4, align : 'center'});
 	
 	url.interactive = true
 	url.on('pointertap',zolaLink)
