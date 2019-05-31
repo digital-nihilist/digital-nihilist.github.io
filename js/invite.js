@@ -247,18 +247,18 @@ loader.load(function (loader, resources) {
 	makeEnvelope(loader, resources)
 	
 	
-		var cBackTex = resources.cardBack.texture
-		
-		const cBackSprite = new PIXI.Sprite(cBackTex)
-		cBackSprite.height = envelopeSize.height
-		cBackSprite.width = envelopeSize.width
-		cardBackContainer.addChild(cBackSprite)
-		
-		
-		cardBackContainer.pivot.x = cardBackContainer.width / 2
-		cardBackContainer.pivot.y = cardBackContainer.height / 2;
-		cardBackContainer.x = app.screen.width / 2;
-		cardBackContainer.y = app.screen.height / 2;
+	var cBackTex = resources.cardBack.texture
+	
+	const cBackSprite = new PIXI.Sprite(cBackTex)
+	cBackSprite.height = envelopeSize.height
+	cBackSprite.width = envelopeSize.width
+	cardBackContainer.addChild(cBackSprite)
+	
+	
+	cardBackContainer.pivot.x = cardBackContainer.width / 2
+	cardBackContainer.pivot.y = cardBackContainer.height / 2;
+	cardBackContainer.x = app.screen.width / 2;
+	cardBackContainer.y = app.screen.height / 2;
 		
 	
 	getNames.then(function (nameString) {
