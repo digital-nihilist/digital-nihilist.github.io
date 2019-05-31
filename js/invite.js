@@ -21,9 +21,9 @@ var getNames = new Promise(function (resolve, reject) {
 		return item[0].toLowerCase().match(urlVars.guest.toLowerCase())
 	  })
 	  
-	  if (thisLine === null) {
-		  reject('womp')
-	  }
+	  if (thisLine == null) {
+		  return reject('womp')
+	  } else {
 	  
 	  var nameString = thisLine[1]
 	  
@@ -47,9 +47,8 @@ var getNames = new Promise(function (resolve, reject) {
 		  }
 	  }
 	  
-	  
-	  
 	  return resolve(nameString)
+	  }
 	}
 
 	guestReq.onerror = function () {
@@ -60,9 +59,8 @@ var getNames = new Promise(function (resolve, reject) {
 	guestReq.send()
 })
 
-var offsetHeight = document.getElementById('thisDiv').offsetHeight
-console.log('offsetHeight',document.getElementById('thisDiv').offsetHeight)
-console.log('screen.height',screen.height)
+
+
 
 
 
@@ -84,7 +82,7 @@ function getViewport() {
 }
 
 var viewport = getViewport()
-console.log('viewport',viewport)
+//console.log('viewport',viewport)
 //alert(JSON.stringify(viewport))
 document.getElementById('thisMess').innerHTML = 'viewport: ' + JSON.stringify(viewport)
 
@@ -130,12 +128,30 @@ const cTopCont = new PIXI.Container();
 const cBotCont = new PIXI.Container();
 
 
+getNames.catch(function (error) {
+	const errContainer = new PIXI.Container();
+	app.stage.addChild(errContainer);
+	
+	//errContainer.anchor.set(0.5)
+	//errContainer.x = app.screen.width / 2;
+	//errContainer.y = app.screen.height / 2;
+	
+	const errorMessage = new PIXI.Text('You have yet to\nunlock this side quest',{fontFamily : 'morris_romanbold', fontSize: paperSize.width/10, fill : 0xb20000, align : 'center'});
+	
+	errorMessage.anchor.set(0.5)
+	errorMessage.y = app.screen.height / 2;
+	errorMessage.x = app.screen.width / 2;
+	
+	console.log('error',errorMessage)
+	errContainer.addChild(errorMessage)
+})
+
+
 function makeCursor (loader, resources) {
-	console.log('makeCursor')
+	//console.log('makeCursor')
 	const thisCursor = new PIXI.Sprite(resources.cursor.texture);
 	thisCursor.interactive = true;
 	thisCursor.cursor = 'default'
-	console.log('cursor',thisCursor)
 	
 	app.stage.defaultCursor =  'crosshair'//"url(./img/cursor.png) 3 2, auto";
 
@@ -242,6 +258,7 @@ var cardAspect = 500/384
 var nameText 
 //after loading the images, do stuff:
 loader.load(function (loader, resources) {
+	console.log('loaderizing')
 	makeCursor(loader, resources)
 	app.stage.addChild(cardBackContainer);
 	makeEnvelope(loader, resources)
@@ -272,7 +289,6 @@ loader.load(function (loader, resources) {
 		envContainer.addChild(nameText)
 	})
 	
-
 	delTicker(function () {
 		if (envContainer.alpha <= 0.05) {
 			envContainer.alpha += 0.0005
