@@ -111,7 +111,6 @@ const app = new PIXI.Application({
 	transparent: true,
 	resolution: 1//window.devicePixelRatio|| 1,
 });
-
 document.body.appendChild(app.view);
 
 const loader = PIXI.Loader.shared;
@@ -119,6 +118,7 @@ loader.add('insideURL','./img/Inside.jpg')
 loader.add('envBack','./img/envBack.jpg')
 loader.add('envFront','./img/envFront.jpg');
 loader.add('cardBack','./img/cardBack.jpg');
+loader.add('cursor','./img/cursor.png');
 
 const envContainer = new PIXI.Container();
 envContainer.alpha = 0.025;
@@ -129,6 +129,16 @@ const cTopCont = new PIXI.Container();
 const cBotCont = new PIXI.Container();
 
 
+function makeCursor (loader, resources) {
+	console.log('makeCursor')
+	const thisCursor = new PIXI.Sprite(resources.cursor.texture);
+	thisCursor.interactive = true;
+	thisCursor.cursor = 'default'
+	console.log('cursor',thisCursor)
+	
+	app.stage.defaultCursor =  'crosshair'//"url(./img/cursor.png) 3 2, auto";
+
+}
 
 if (stageWidth * 0.85 * 384/500 > stageHeight * 0.85) {
 	var envelopeSize = {
@@ -191,6 +201,7 @@ function addCard(loader, resources) {
 	const topSprite = new PIXI.Sprite(topTex)
 	topSprite.height = 1
 	topSprite.width = paperSize.width
+	
 	const botSprite = new PIXI.Sprite(botTex)
 	botSprite.height = paperSize.height
 	botSprite.width = paperSize.width
@@ -218,7 +229,7 @@ var cardAspect = 500/384
 var nameText 
 //after loading the images, do stuff:
 loader.load(function (loader, resources) {
-	
+	makeCursor(loader, resources)
 	app.stage.addChild(cardBackContainer);
 	makeEnvelope(loader, resources)
 	
@@ -289,22 +300,25 @@ loader.load(function (loader, resources) {
 				envContainer.width += envelopeSize.width / 10
 			}
 		})
-		//delay(1000).then(dropEnvelope)
+		delay(1000).then(dropEnvelope)
 	}
 	
-
+	var dropped = false
 	function dropEnvelope() {
 		console.log('dropEnvelope')
-		cardBackContainer.alpha = 1
-		delTicker(function () {
-			if (envContainer.y < 4 * app.screen.height) {
-				envContainer.y += 5
-			} 
-			if (envContainer.y <  2 * app.screen.height) {
-				envContainer.alpha -= 0.025
-			}
-		})
-		delay(1000).then(scaleCard)
+		if (!dropped) {
+			dropped = true
+			cardBackContainer.alpha = 1
+			delTicker(function () {
+				if (envContainer.y < 4 * app.screen.height) {
+					envContainer.y += 5
+				} 
+				if (envContainer.y <  2 * app.screen.height) {
+					envContainer.alpha -= 0.025
+				}
+			})
+			delay(1000).then(scaleCard)
+		}
 	}
 
 	var scaled = false
@@ -322,8 +336,8 @@ loader.load(function (loader, resources) {
 			}
 			if (cardBackContainer.pivot.y > 0) {
 				cardBackContainer.pivot.y -= paperSize.height / 45
-			} else if (cardBackContainer.pivot.y  < 0) {
-				cardBackContainer.pivot.y = 0
+			} else if (cardBackContainer.pivot.y  < paperSize.height / -15) {
+				cardBackContainer.pivot.y = paperSize.height / -15
 			}
 		})
 		delay(1500).then(openCard)
@@ -332,12 +346,15 @@ loader.load(function (loader, resources) {
 	var opened = false
 	function openCard() {
 		console.log('openCard')
+		cTopCont.alpha = 0
 		addCard(loader, resources)
 		
 		//cardBackContainer.y -= 2
+		//cardBackContainer.y = stageHeight / 2
 		//cTopCont.height -= 5
 		//cardBackContainer.width = paperSize.width
 		//cardBackContainer.height = paperSize.height
+		
 		
 		delTicker(function() {
 			if (!opened && cardBackContainer.height > 0) {
@@ -347,6 +364,7 @@ loader.load(function (loader, resources) {
 				cardBackContainer.alpha = 0
 			}
 			if (opened && cTopCont.height < paperSize.height) {
+				cTopCont.alpha = 1
 			  cTopCont.height += paperSize.height/30
 			}
 			if (opened && cTopCont.height > paperSize.height) {
