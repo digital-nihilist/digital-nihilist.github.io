@@ -329,7 +329,7 @@ loader.load(function (loader, resources) {
 				envContainer.width += envelopeSize.width / 10
 			}
 		})
-		delay(1000).then(dropEnvelope)
+		//delay(1000).then(dropEnvelope)
 	}
 	
 	var dropped = false
